@@ -9,7 +9,7 @@ public interface BootService {
 	String add(StudentDTO dto);
 	StudentDTO findSpecificStudentDataByName(String sname);
 	
-	//getting all list of student
+	//getting all list of student dto
 	List<StudentDTO> findAll();
 	
 }
