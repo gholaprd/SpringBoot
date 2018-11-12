@@ -8,6 +8,8 @@ public interface BootService {
 
 	String add(StudentDTO dto);
 	StudentDTO findSpecificStudentDataByName(String sname);
+	
+	//getting all list of student
 	List<StudentDTO> findAll();
 	
 }
