@@ -1,0 +1,14 @@
+Why Lambda Expression came in java
+
+Enables functional programming: All new JVM based languages take advantage of the functional paradigm in their 
+applications, but programmers forced to work with Object-Oriented Programming (OOPS) till lambda expressions came. 
+
+Why Use Joda-Time?
+The date/time API, before Java 8, presented multiple design problems.
+
+Among the problems is the fact that the Date and SimpleDateFormatter classes aren't thread-safe. 
+To address this issue, Joda-Time uses immutable classes for handling date and time.
+The Date class doesn't represent an actual date, but instead,
+ it specifies an instant in time, with millisecond precision. The year in a Date starts from 1900,
+Joda-Time also offers support for eight calendar systems, 
+while Java offers just 2: Gregorian – java.util.GregorianCalendar and Japanese – java.util.JapaneseImperialCalendar.
