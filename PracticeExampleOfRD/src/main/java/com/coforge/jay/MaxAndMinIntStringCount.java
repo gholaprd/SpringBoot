@@ -13,6 +13,9 @@ public class MaxAndMinIntStringCount {
 		Integer max = listInt.stream().max((s1,s2)->s1.compareTo(s2)).get();
 		System.out.println(max);
 		Integer min = listInt.stream().min((s1,s2)->s1.compareTo(s2)).get();
+		Integer integer = listInt.stream().reduce(10,Integer::min);
+		
+		System.out.println(integer);
 		System.out.println(min);
 		
 	}

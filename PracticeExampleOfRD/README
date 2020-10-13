@@ -12,3 +12,47 @@ The Date class doesn't represent an actual date, but instead,
  it specifies an instant in time, with millisecond precision. The year in a Date starts from 1900,
 Joda-Time also offers support for eight calendar systems, 
 while Java offers just 2: Gregorian – java.util.GregorianCalendar and Japanese – java.util.JapaneseImperialCalendar.
+
+Dependancy lookup
+
+when obj gets the req dependancies on its own called DL. If we go the containes and ask for an obj then it is DL.
+Majority we are avoiding it.
+
+DI
+if some external component gives the required dependancies called DI
+
+# Ref store in conatined and obj store in JVM.
+
+DI is type of IOC
+
+Weak Hashmap used in storing the value in container
+Map<beanId,objRef>
+
+FilePath* never used in WEB APP.
+
+
+
+IOC is not DI.
+
+@Componet scan scan the current package not all present in classpath.
+
+@Component - conveying to the spring to create an obj of class.
+
+Constructor injection depencies are mandatory & final but in SC optional
+Taking filed as final of obj then we can say class is immutable. we can change the state of obj creation in CI but SI we can do it.
+
+Autowired field level problem we can't solve and can't mock the obj.
+
+one Obj created per conatiner same obj return from conatiner for that bean called Sigleton. Only one obj across your app.
+
+Prototype- bean def is one but get new obj.
+prototype obj not created until the someone requested. create on demand. lazy intialization. destory after usage.container will not held the obj
+its like use n throw , intialization lifecycle but not destruction lifecycle for prototype.
+
+1)Only one obj per bean def per container  				Mutliple obj per bean def per conatiner
+2)obj gets created during conatiner intialization		obj get creates on demand
+3)Every conatiner return same obj						return new obj
+4)container hold the ref for singleton obj				not hold the ref
+5)obj destoy once container destroy						destroy after usage as part of GC
+6)all the lifecycle phase apply							since container not holding the ref so lifecycle phase not apply
+
