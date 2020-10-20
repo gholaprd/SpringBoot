@@ -56,3 +56,248 @@ its like use n throw , intialization lifecycle but not destruction lifecycle for
 5)obj destoy once container destroy						destroy after usage as part of GC
 6)all the lifecycle phase apply							since container not holding the ref so lifecycle phase not apply
 
+
+Spring Boot
+
+2.xx not support for java 7
+
+What is the difference between @SpringBootApplication and @EnableAutoConfiguration annotation?
+The @SpringBootApplication is a combination of three annotations @Configuration (used for Java-based configuration),
+@ComponentScan (used for component scanning), and @EnableAutoConfiguration (used to enable auto-configuration in Spring Boot).
+Btw, this annotation is available from Spring 1.2 onwards which means if you are running on lower Spring Boot version then you will still need to use 
+the @Configuration, @CompnentScan, and @EnableAutoConfiguration if you need those features.
+ before 1.2 and after we can use the @SpringBootApplication
+@Configuration to enable Java-based configuration
+@ComponentScan to enable component scanning.
+@EnableAutoConfiguration to enable Spring Boot's auto-configuration feature.
+@ComponentScan
+This annotation enables component-scanning so that the web controller classes and other components you create will be automatically discovered and 
+registered as beans in Spring's Application Context. All the@Controller classes you write are discovered by this annotation.
+
+
+@Controller - specilization of @component use to configure the spring mvc controller classes and spring bean to IOC container.
+Indicates that an annotated class is a "Controller" (e.g. a web controller).
+it is in spring core jar /package
+It is typically used in combination with annotated handler methods based on the {@link org.springframework.web.bind.annotation.RequestMapping}
+ annotation.
+
+@RestController
+Spring RestController annotation is a convenience annotation that is itself annotated with @Controller and @ResponseBody. This annotation is applied to a 
+class to mark it as a request handler.
+
+Spring RestController annotation is used to create RESTful web services using Spring MVC. Spring RestController takes care 
+of mapping request data to the 
+defined request handler method. Once response body is generated from the handler method, it converts it to JSON or XML 
+response.
+
+Framework	Path segment	http query parameter
+Jersey (JAX-RS)	@PathParam	@QueryParam
+Spring RESTFul	@PathVariable	@RequestParam
+
+@PathParam reads the value from a path part of the called URI. @QueryParam is used to read the values ​​from QueryParameters of a URI call. 
+These are after? listed in a URI.
+
+Microservices
+It it architechrul way to design our appl uniquely with small modules developed individually ,packaged indvidually and 
+deployed ondividually ,in individiually process
+
+
+Why Microservice
+previously developing and deploying app eficien way in monolithic approach
+developing individually but packaging dependently as single 	war
+
+Whats are the drawbacks in monolithic aproach
+
+Performance issue due to huge data (means in terms of War)
+CICD not posssible (if there is bug in services then repackage all services)
+Adopting new technology is not possible
+Exception propogation not proper(If one services failed then all ur appl down)
+code redeability not there.
+
+Best design of MS
+- Seprate build for each MS
+- Seprate data store for each MS
+- Deploy into containers
+
+DDD(Domain driven Design)
+Focus on Core domain logic
+find the complex on modelof the domain 
+constanly collabarate with  domain experts
+
+Need of DDD
+Maintaability
+testablity
+reduced compexity
+
+Spring Cloud
+spring Cloud in Microservices, is a system that provides integration with external systems.
+features
+Services discovery
+service to service call
+ckt breaker and load balancing
+routing
+
+
+End to End testing validates all the processes in the workflow to check if everything is working properly as expected
+
+Why Would You Opt For Microservices Architecture?
+Microservices can adapt easily to other frameworks or technologies.
+Failure of a single process does not affect the entire system.
+Provides support to big enterprises as well as small teams.
+Can be deployed independently and in relatively less time.
+
+Eureka knows as Netflix service discovery
+Netflix provided internally uses of cloud
+
+Register the services in Eureka server
+cleint will not directly communicate with services it should like through  eureka server bcz the url should hardcoded 
+
+Microservices are often integrated using a simple protocol like REST over HTTP. Other communication protocols can also be used for integration like AMQP,
+ JMS, Kafka, etc.
+
+The communication protocol can be broadly divided into two categories- synchronous communication and asynchronous communication.
+
+Synchronous Communication
+RestTemplate, WebClient, FeignClient can be used for synchronous communication between two microservices. Ideally, we should minimize the number of 
+synchronous calls between microservices because networks are brittle and they introduce latency. Ribbon - a client-side load balancer can be used for
+better utilization of resource on the top of RestTemplate. Hystrix circuit breaker can be used to handle partial failures gracefully without a 
+cascading effect on the entire ecosystem. Distributed commits should be avoided at any cost, instead, we shall opt for eventual consistency using 
+asynchronous communication.
+
+Asynchronous Communication
+In this type of communication, the client does not wait for a response, instead, it just sends the message to the message broker. 
+AMQP (like RabbitMQ) or Kafka can be used for asynchronous communication across microservices to achieve eventual consistency.
+
+You must use asynchronous communication while handling HTTP POST/PUT (anything that modifies the data) requests, using some reliable queue mechanism 
+(RabbitMQ, AMQP, etc.) 
+It's fine to use synchronous communication for Aggregation pattern at API Gateway Level. But this aggregation should not include any business logic other 
+than aggregation. Data values must not be transformed at Aggregator, otherwise, it defeats the purpose of Bounded Context. In Asynchronous communication,
+ events should be published into a Queue. Events contain data about the domain, it should not tell what to do (action) on this data. 
+If microservice to microservice communication still requires synchronous communication for GET operation, then seriously reconsider the partitioning of 
+your microservices for bounded context, and create some tasks in backlog/technical debt
+
+
+There are certain advantages.
+
+1.URLs are not hardcoded.
+
+2.you don't have to write unit test cases for feign as there is no code to test however you have to write integration tests.
+
+3.we can use Eureka Client ID instead of the URL.
+
+4.Feign handled the actual code.
+
+5.Feign integrates with Ribbon and Eureka Automatically.
+
+singleton: Only one instance of the bean will be created for each container. This is the default scope for the spring beans. While using this scope, 
+make sure spring bean doesn’t have shared instance variables otherwise it might lead to data inconsistency issues because it’s not thread-safe.
+
+What is Bean wiring and @Autowired annotation?
+The process of injection spring bean dependencies while initializing it called Spring Bean Wiring.
+
+Does Spring Bean provide thread safety?
+The default scope of Spring bean is singleton, so there will be only one instance per context. That means that all the having a class level variable 
+that any thread can update will lead to inconsistent data. Hence in default mode spring beans are not thread-safe.
+
+However, we can change spring bean scope to request, prototype or session to achieve thread-safety at the cost of performance. 
+It’s a design decision and based on the project requirements.
+
+What is a Controller in Spring MVC?
+Just like MVC design pattern, Controller is the class that takes care of all the client requests and send them to the configured resources to handle it.
+ In Spring MVC, org.springframework.web.servlet.DispatcherServlet is the front controller class that initializes the context based on the spring beans
+  configurations.
+  
+  What is DispatcherServlet and ContextLoaderListener?
+DispatcherServlet is the front controller in the Spring MVC application and it loads the spring bean configuration file and initialize all the beans that
+ are configured. If annotations are enabled, it also scans the packages and configure any bean annotated with @Component, @Controller, 
+ @Repository or @Service annotations.
+
+ContextLoaderListener is the listener to start up and shut down Spring’s root WebApplicationContext. It’s important functions are to tie up the 
+lifecycle of ApplicationContext to the lifecycle of the ServletContext and to automate the creation of ApplicationContext. We can use it to define 
+shared beans that can be used across different spring contexts.
+
+Can we have multiple Spring configuration files?
+For Spring MVC applications, we can define multiple spring context configuration files through contextConfigLocation. This location string can consist 
+of multiple locations separated by any number of commas and spaces. 
+
+What is ContextLoaderListener?
+ContextLoaderListener is the listener class used to load root context and define spring bean configurations that will be visible to all other contexts. 
+It’s configured in web.xml file
+
+How can we use Spring to create Restful Web Service returning JSON response?
+By using jackson databing dependancy
+
+Define Bean Wiring.
+When beans are combined together within the Spring container, it’s called wiring or bean wiring. The Spring container needs to know what beans are
+ needed and how the container should use dependency injection to tie the beans together, while wiring beans.
+ 
+ What is an entity?
+The entity is a group of states associated together in a single unit. An entity behaves as an object and becomes a major constituent of the 
+object-oriented paradigm
+
+
+What are the types of cascade supported by JPA?
+Following is the list of cascade type: -
+
+PERSIST: In this cascade operation, if the parent entity is persisted then all its related entity will also be persisted.
+MERGE: In this cascade operation, if the parent entity is merged, then all its related entity will also be merged.
+DETACH: In this cascade operation, if the parent entity is detached, then all its related entity will also be detached.
+REFRESH: In this cascade operation, if the parent entity is refreshed, then all its related entity will also be refreshed.
+REMOVE: In this cascade operation, if the parent entity is removed, then all its related entity will also be removed.
+ALL In this case, all the above cascade operations can be applied to the entities related to the parent entity.
+
+One-to-one mapping: The one-to-one mapping represents a single-valued association where an instance of one entity is associated with an instance of another
+ entity. In this type of association, one instance of source entity can be mapped with at most one instance of the target entity.
+One-To-Many mapping: The One-To-Many mapping comes into the category of collection-valued association where an entity is associated with a collection of 
+other entities. In this type of association, the instance of one entity can be mapped with any number of instances of another entity.
+Many-to-one mapping The Many-To-One mapping represents a single-valued association where a collection of entities can be associated with the similar 
+entity. In the relational database, more than one row of an entity can refer to the same row of another entity.
+Many-to-many mapping The Many-To-Many mapping represents a collection-valued association where any number of entities can be associated with a 
+collection of other entities. In the relational database, more than one row of one entity can refer to more than one row of another entity.
+
+What is the Java Persistence API?
+The Java Persistence API (JPA) is the specification of Java that is used to persist data between Java object and relational database. 
+JPA acts as a bridge between object-oriented domain models and relational database systems. As JPA is just a specification, it doesn't perform any
+ operation by itself. It requires an implementation. Therefore, ORM tools like Hibernate, TopLink, and iBatis implements JPA
+ 
+ What does the @Id annotation do?
+The @Id annotation marks a field as the primary key for that particular table. This is a unique identifier for each entry in the table. 
+This annotation is typically used with @GeneratedValue to automatically generate an unique id for each entry in the table.
+
+What does the @Entity annotation do?
+The @Entity annotation indicates a class represents a relational table in the database
+
+Here comes the role of Spring data JPA, which sits right between application’s domain layer and JPA implementation like Hibernate. 
+With it’s out-of-the-box features, many of the problems are solved and it gets easy to talk with any JPA implementation.
+
+What features does Spring data JPA provides?
+It provides built-in out of the box support for repositories, according to our Entity classes. This alone removes almost all the typical repository boilerplate code.
+Query creation from method declaration. We can name methods in a specific format and it provides us the query implementation to fetch the data.
+It has built-in pagination support.
+Support for dynamic query execution.
+Support for Type-Safe queries by QueryDSL.
+
+AUTO: Hibernate selects the generation strategy based on the used dialect,
+IDENTITY: Hibernate relies on an auto-incremented database column to generate the primary key,
+SEQUENCE: Hibernate requests the primary key value from a database sequence,
+TABLE: Hibernate uses a database table to simulate a sequence.
+
+What are the possible states of entity bean?
+Entity bean can have below possible state –
+
+Transient: When ever we create a new object of Entity bean then we can say that is in Transient state,At that time any modification in the object state 
+does not effect on database.
+Persistent: When ever the Object of entity bean associated with session we can say that is in persistent state, if any change in the object state , 
+then that modification effects in database.
+Detached :When ever the object is removed from session then it enters in to detached state.Any modification on detached state object , does not effect 
+in database.
+
+Can you make entity class as final?
+You can make an Hibernate Entity class final, but that’s not a good practice.
+Generally, persistence providers make proxies of objects using some library like CGLIB or javassist. 
+
+What is the difference between get() and load() and when to use what ?
+If no row with the given identifier value exists in the database, get() returns null. The load() method throws an ObjectNotFoundException.
+
+Here evict() is used to remove a particular object from cache associated with session, and clear() method is used to remove all cached objects associated with session. 
+

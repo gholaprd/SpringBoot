@@ -9,6 +9,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 public class MapListInJava8 {
 
 	public static void main(String[] args) {
@@ -66,8 +70,28 @@ public class MapListInJava8 {
 
 }
 class Employees {
+//@NotEmpty
 private Integer id;
+@NotNull(message = "name should not null")
 private String name;
+//@NotEmpty
+private String email;
+/**
+ * @return the email
+ */
+public String getEmail() {
+	return email;
+}
+
+
+/**
+ * @param email the email to set
+ */
+public void setEmail(String email) {
+	this.email = email;
+}
+
+
 private Double salary;
 private int age;
 
@@ -138,7 +162,7 @@ public void setAge(int age) {
 
 @Override
 public String toString() {
-	return "Employees [id=" + id + ", name=" + name + ", salary=" + salary + ", age=" + age + "]";
+	return "Employees [id=" + id + ", name=" + name + ", email=" + email + ", salary=" + salary + ", age=" + age + "]";
 }
 
 
