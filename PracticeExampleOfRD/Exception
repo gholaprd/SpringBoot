@@ -1,0 +1,32 @@
+throw: Sometimes we explicitly want to create exception object and then throw it to halt the normal processing of the program. throw keyword is used to
+ throw exception to the runtime to handle it.
+ 
+ Exception is the super class of all checked exceptions whereas RuntimeException is the super class of all unchecked exceptions. 
+ Note that RuntimeException is the child class of Exception.
+ 
+ ClassNotFoundException:
+An exception that occurs when you try to load a class at run time using Class.forName() or loadClass() methods and mentioned classes are not found in
+ the classpath is called ClassNotFoundException.
+
+NoClassDefFoundError:
+An exception that occurs when a particular class is present at compile-time but was missing at run time is called NoClassDefFoundError.
+
+hrows keyword is used in method signature to declare which checked exception method can throw, you can also declare unchecked exception, but that is 
+not mandatory by the compiler.
+
+This signifies a lot of things like method is not going to handle Exception instead it's throwing it, if method throws checked Exception then the 
+caller should provide compile-time exception handling etc.
+
+On the other hand, throw keyword is actually used to throw any Exception. Syntactically you can throw any Throwable (i.e. Throwable or any class 
+derived from Throwable) , throw keyword transfers control of execution to the caller so it can be used in place of return keyword. Most common example of 
+using throw in place of return is throwing UnSupportedOperationException from an empty method as shown below :
+
+throw																				throws
+1)	Java throw keyword is used to explicitly throw an exception.		Java throws keyword is used to declare an exception.
+2)	Checked exception cannot be propagated using throw only.			Checked exception can be propagated with throws.
+3)	Throw is followed by an instance.									Throws is followed by class.
+4)	Throw is used within the method.									Throws is used with the method signature.
+5)	You cannot throw multiple exceptions.								You can declare multiple exceptions e.g.
+																		public void method()throws IOException,SQLException
+																		
+																		

@@ -1,0 +1,199 @@
+difference because ArrayList with raw type is not type safe but ArrayList<?> with the unbounded wildcard is type safe.
+
+You can add objects of any type into raw ArrayList but you cannot do that with a generic ArrayList with unbounded wildcard i.e. ArrayList, it will be a 
+compile-time error, as we'll see by a code example in this article.
+
+Now, let's see a Java program to understand the point I make in above paragraph. I said, that when you use a raw type ArrayList or ArrayList with unbounded
+ wildcard as method arguments you can accept any type of ArraList i.e. your client can pass ArrayList of String, ArrayList of Integer, or ArrayList of
+  Date object, but if you try to add new objects to that list then raw type will allow but generics list with unbounded wildcard will not allow.
+
+It will throw a compile-time error because it doesn't know which type of ArrayList it has received and be being type-safe it throws an error every time
+ you try to add a new element. You cannot even add java.lang.Object into a list of unbounded wildcards.
+
+ArrayList is a raw type and not type-safe and ArrayList is type safe but not flexible and how you can make it flexible e.g. by using bounded wildcards 
+like ArrayList
+
+Read-only List, Map and Set in Java by using Collections.unmodifiableList(contents);
+
+there was no way to create a large, thread-safe, ConcurrentHashSet in Java.
+
+ConcurrentHashMap&ltString, Integer> certificationCosts = new ConcurrentHashMap<>(); Set<String> concurrentHashSet = certificationCosts.newKeySet(); 
+concurrentHashSet.add("OCEJWCD"); //OK 
+concurrentHashSet.contains("OCEJWCD"); //OK 
+concurrentHashSet.remove("OCEJWCD"); //OK
+
+How ConcurrentHashMap is implemented in Java
+ConcurrentHashMap is introduced as an alternative of Hashtable and provided all functions supported by Hashtable with an additional feature called
+ "concurrency level", which allows ConcurrentHashMap to partition Map. ConcurrentHashMap allows multiple readers to read concurrently without any blocking. 
+
+This is achieved by partitioning Map into different parts based on concurrency level and locking only a portion of Map during updates. 
+The default concurrency level is 16, and accordingly, Map is divided into 16 part and each part is governed with a different lock. 
+
+This means, 16 threads can operate on Map simultaneously until they are operating on a different part of Map. This makes ConcurrentHashMap 
+high performance despite keeping thread-safety intact.  Though, it comes with a caveat. Since update operations like put(), remove(), 
+putAll() or clear() is not synchronized, concurrent retrieval may not reflect
+
+ConcurrentHashMap also uses ReentrantLock to internally lock its segments.
+
+HashSet working
+
+public class HashSet<E>
+extends AbstractSet<E>
+implements Set<E>, Cloneable, java.io.Serializable
+
+{
+    private transient HashMap<E,Object> map;
+    
+    // Dummy value to associate with an Object in the backing Map
+    
+    private static final Object PRESENT = new Object();
+    
+    
+    
+    public HashSet() {
+        map = new HashMap<>();
+    }
+    
+    // SOME CODE ,i.e Other methods in Hash Set
+    
+    
+    public boolean add(E e) {
+        return map.put(e, PRESENT)==null;
+    }
+    
+     hashset.add(3)   what java does internally is that it will put that element E here 3 as a key in the HashMap(created during HashSet object creation) 
+     and some dummy value that is Object's object is passed as a value to the key .
+
+Now if you see the code of the HashMap put(Key k,Value V) method , you will find something like this
+
+ public V put(K key, V value) {
+//Some code
+}
+
+The main point to notice in above code is that put (key,value) will return
+
+1.  null , if key is unique and added to the map
+2.  Old Value of the key , if key is duplicate
+
+So , in HashSet add() method ,  we check the return value of map.put(key,value) method with null value
+i.e.
+
+   public boolean add(E e) {
+            return map.put(e, PRESENT)==null;
+       }
+
+So , if map.put(key,value) returns null ,then
+map.put(e, PRESENT)==null      will return true and element is added to the HashSet.
+
+
+
+So , if map.put(key,value) returns old value of the key ,then
+map.put(e, PRESENT)==null      will return false and element is  not added to the HashSet .
+    
+
+public Iterator<E> iterator() {
+        return map.keySet().iterator();
+    }
+    
+    when you call get() method with key object to retrieve corresponding value from hash based collection
+
+a) Key.hashCode() method is used to find the bucket location in backing array. (Remember HashMap is backed by array in Java) Though hashcode() is not 
+used directly, but they are passed to internal hash() function.
+
+b) In backing array or better known as the bucket, key and values are stored in the form of a nested class called Entry.  If there is only one Entry at 
+bucket location, then the value from that entry is returned.
+
+
+What happens if two keys have the same hashCode? If multiple keys have the same hashCode, then during put() operation collision had occurred, 
+which means multiple Entry objects stored in a bucket location.
+
+Call hashCode() method of the key to finding bucket location.
+
+2) Traverse thought linked list, comparing keys in each entries using keys.equals() until it returns true.
+
+So, we use equals() method of a key object to find correct entry and then return value from that. Remember key.equals() method, and this is what 
+Interviewer want to know. I have seen many programmers mentioning value.equals(), which may be due to interview nervousness, but that’s incorrect. 
+Since you don't have value object passed to get() method, there is no question of calling equals and hashCode method on value object
+
+
+Collection interface defines remove(Object obj) method to remove objects from Collection. List interface adds another method remove(int index), 
+which is used to remove object at specific index.
+
+What do you need to do to use a custom object as a key in Collection classes like Map or Set? (answer)
+The answer is: If you are using any custom object in Map as key, you need to override equals() and hashCode() method, and make sure they follow their 
+contract. On the other hand if you are storing a custom object in Sorted Collection e.g. SortedSet or SortedMap, you also need to make sure that your 
+equals() method is consistent to compareTo() method, otherwise that collection will not follow there contacts e.g. Set may allow duplicates.
+
+Why Collection doesn’t extend Cloneable and Serializable interfaces?
+A lot of the Collection implementations have a public clone method. However, it doesn’t make sense to include it in all implementations of Collection.
+ This is because Collection is an abstract representation. What matters is the implementation.
+
+What is an Iterator?
+The Iterator interface provides methods to iterate over any Collection. We can get iterator instance from a Collection using iterator() method.
+
+How HashMap works in Java?
+HashMap stores key-value pair in Map.Entry static nested class implementation. HashMap works on hashing algorithm and uses hashCode() and equals() 
+method in put and get methods.
+
+When we call put method by passing key-value pair, HashMap uses Key hashCode() with hashing to find out the index to store the key-value pair. The
+ Entry is stored in the LinkedList, so if there is an already existing entry, it uses equals() method to check if the passed key already exists, if yes
+  it overwrites the value else it creates a new entry and stores this key-value Entry.
+
+When we call get method by passing Key, again it uses the hashCode() to find the index in the array and then use equals() method to find the correct Entry
+ and return its value. The below image will explain these detail clearly.
+
+What is the importance of hashCode() and equals() methods?
+HashMap uses the Key object hashCode() and equals() method to determine the index to put the key-value pair. These methods are also used when we try 
+to get value from HashMap. If these methods are not implemented correctly, two different Key’s might produce the same hashCode() and equals() output 
+and in that case, rather than storing it at a different location, HashMap will consider the same and overwrite them.
+
+Similarly all the collection classes that doesn’t store duplicate data use hashCode() and equals() to find duplicates, so it’s very important to 
+implement them correctly. The implementation of equals() and hashCode() should follow these rules.
+
+If o1.equals(o2), then o1.hashCode() == o2.hashCode()should always be true.
+If o1.hashCode() == o2.hashCode is true, it doesn’t mean that o1.equals(o2) will be true.
+
+How HashMap works in Java
+
+HashMap works on the principle of Hashing 
+
+hashCode() function  which returns an integer value is the Hash function.
+
+So the Hash value is the int value returned by the hash function .
+What is bucket ?
+A bucket is used to store key value pairs . A bucket can have multiple key-value pairs . In hash map, bucket used simple linked list to store objects 
+ Public  V get(Object key)
+   {
+2.     if (key ==null)
+3.     //Some code
+    
+4.     int hash = hash(key.hashCode());
+    
+5.     // if key found in hash table then  return value
+6.     //    else return null
+   }
+   
+   HashMap get(Key k) method calls hashCode method on the key object and applies returned hashValue to its own static hash function to find a bucket
+    location(backing array) where keys and values are stored in form of a nested class called Entry (Map.Entry) . So you have concluded that from the
+     previous line that Both key and value is stored in the bucket as a form of  Entry object . So thinking that Only value is stored  in the bucket 
+     is not correct and will not give a good impression on the interviewer .
+
+* Whenever we call get( Key k )  method on the HashMap object . First it checks that whether key is null or not .  Note that there can only be one null 
+key in HashMap .  
+
+If key is null , then Null keys always map to hash 0, thus index 0.
+
+If key is not null then , it will call hashfunction on the key object , see line 4 in above method i.e. key.hashCode()  ,so after key.hashCode() 
+returns hashValue , line 4 looks like
+
+4.                int hash = hash(hashValue)
+
+ , and now ,it applies returned hashValue into its own hashing function 
+ 
+ The bucket is the linked list effectively . Its not a LinkedList as in a java.util.LinkedList - It's a separate (simpler) implementation just for 
+ the map 
+ So we traverse through linked list , comparing keys in each entries using keys.equals() until it return true.  Then the corresponding entry object Value 
+ is returned .
+ Node class contains ( hash , key, value, bucketindex).
+ 
+
