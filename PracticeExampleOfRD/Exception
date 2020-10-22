@@ -11,7 +11,7 @@ An exception that occurs when you try to load a class at run time using Class.fo
 NoClassDefFoundError:
 An exception that occurs when a particular class is present at compile-time but was missing at run time is called NoClassDefFoundError.
 
-hrows keyword is used in method signature to declare which checked exception method can throw, you can also declare unchecked exception, but that is 
+throws keyword is used in method signature to declare which checked exception method can throw, you can also declare unchecked exception, but that is 
 not mandatory by the compiler.
 
 This signifies a lot of things like method is not going to handle Exception instead it's throwing it, if method throws checked Exception then the 

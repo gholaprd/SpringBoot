@@ -17,7 +17,7 @@ Read-only List, Map and Set in Java by using Collections.unmodifiableList(conten
 
 there was no way to create a large, thread-safe, ConcurrentHashSet in Java.
 
-ConcurrentHashMap&ltString, Integer> certificationCosts = new ConcurrentHashMap<>(); Set<String> concurrentHashSet = certificationCosts.newKeySet(); 
+ConcurrentHashMap<String, Integer> certificationCosts = new ConcurrentHashMap<>(); Set<String> concurrentHashSet = certificationCosts.newKeySet(); 
 concurrentHashSet.add("OCEJWCD"); //OK 
 concurrentHashSet.contains("OCEJWCD"); //OK 
 concurrentHashSet.remove("OCEJWCD"); //OK

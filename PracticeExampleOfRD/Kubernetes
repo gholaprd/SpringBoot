@@ -1,0 +1,76 @@
+Kubernetes is an open-source container management tool which holds the responsibilities of container deployment, scaling & descaling of containers & load balancing.
+
+How is Kubernetes related to Docker?
+It’s a known fact that Docker provides the lifecycle management of containers and a Docker image builds the runtime containers. But, since these individual containers have to communicate, Kubernetes is used.  So, Docker builds the containers and these containers communicate with each other via Kubernetes. So, containers running on multiple hosts can be manually linked and orchestrated using Kubernetes.
+
+What is Container Orchestration?
+Consider a scenario where you have 5-6 microservices for an application. Now, these microservices are put in individual containers, but won’t be able to communicate without container orchestration. So, as orchestration means the amalgamation of all instruments playing together in harmony in music, similarly container orchestration means all the services in individual containers working together to fulfill the needs of a single server.
+
+What is the need for Container Orchestration?
+Consider you have 5-6 microservices for a single application performing various tasks, and all these microservices are put inside containers. Now, to make sure that these containers communicate with each other we need container orchestration.
+problems are scaling was difficult, Increase the human cost of running services.
+
+What are the features of Kubernetes?
+Automatic scheduling(provide scheduler to luanch container on cluster nodes)
+
+self healing Capabilities (Rescheduling,replacing,restarting the containers which are died)
+Automatic rollouts and rollbacks 
+Horizontal scaling 	and load balancing as per requirement.
+
+What do you know about clusters in Kubernetes?
+feed the cluster services of a specific configuration, and it will be up to the cluster services to go out and run that configuration in the infrastructure.
+
+Like on application.yaml file have Pods (pod1(conatiner img1 ,img2)--replicas 3 ,pod2(container img3)->replicas 2) will communicate to cluster of kubernates
+
+and cluster services of kubernates will communicate with 3 worker node of Pod1Replicas means 3 different nodes
+
+ What is Kubectl?
+Kubectl is the platform using which you can pass commands to the cluster. So, it basically provides the CLI to run commands against the Kubernetes cluster with various ways to create and manage the Kubernetes component.
+
+Q14.  What is Kubelet?
+This is an agent service which runs on each node and enables the slave to communicate with the master. So, Kubelet works on the description of containers provided to it in the PodSpec and makes sure that the containers described in the PodSpec are healthy and running.
+
+What are the different components of Kubernetes Architecture?
+The Kubernetes Architecture has mainly 2 components – the master node and the worker node. As you can see in the below diagram, the master and the worker nodes have many inbuilt components within them. The master node has the kube-controller-manager, kube-apiserver, kube-scheduler, etcd. Whereas the worker node has kubelet and kube-proxy running on each node.
+
+What do you understand by load balancer in Kubernetes?
+A load balancer is one of the most common and standard ways of exposing service. There are two types of load balancer used based on the working environment i.e. either the Internal Load Balancer or the External Load Balancer. The Internal Load Balancer automatically balances load and allocates the pods with the required configuration whereas the External Load Balancer directs the traffic from the external load to the backend pods.
+
+Pods
+
+A pod is a collection of containers and its storage inside a node of a Kubernetes cluster. It is possible to create a pod with multiple containers inside it. For example, keeping a database container and data container in the same pod.
+
+Types of Pod
+There are two types of Pods −
+
+Single container pod
+Multi container pod
+Single Container Pod
+They can be simply created with the kubctl run command, where you have a defined image on the Docker registry which we will pull while creating a pod.
+
+A node is a working machine in Kubernetes cluster which is also known as a minion. They are working units which can be physical, VM, or a cloud instance.
+
+Each node has all the required configuration required to run a pod on it such as the proxy service and kubelet service along with the Docker, which is used to run the Docker containers on the pod created on the node.
+
+They are not created by Kubernetes but they are created externally either by the cloud service provider or the Kubernetes cluster manager on physical or VM machines.
+
+The key component of Kubernetes to handle multiple nodes is the controller manager, which runs multiple kind of controllers to manage nodes. To manage nodes, Kubernetes creates an object of kind node which will validate that the object which is created is a valid node.
+
+Pods are the smallest deployable units of computing that you can create and manage in Kubernetes.
+
+A Pod is a group of one or more containers, with shared storage/network resources, and a specification for how to run the containers.
+
+Pod lifecycle
+Pods are ephemeral. They are not designed to run forever, and when a Pod is terminated it cannot be brought back. In general, Pods do not disappear until they are deleted by a user or by a controller.
+
+pods cannot repair or replace themselves,
+
+Kubernetes runs your workload by placing containers into Pods to run on Nodes. A node may be a virtual or physical machine, depending on the cluster. Each node contains the services necessary to run Pods, managed by the control plane.
+
+A Pod always runs on a Node. A Node is a worker machine in Kubernetes and may be either a virtual or a physical machine, depending on the cluster. Each Node is managed by the Master. A Node can have multiple pods, and the Kubernetes master automatically handles scheduling the pods across the Nodes in the cluster. The Master's automatic scheduling takes into account the available resources on each Node.
+
+Every Kubernetes Node runs at least:
+
+Kubelet, a process responsible for communication between the Kubernetes Master and the Node; it manages the Pods and the containers running on a machine.
+A container runtime (like Docker) responsible for pulling the container image from a registry, unpacking the container, and running the application.
+
