@@ -1,0 +1,111 @@
+Spring Boot
+
+2.xx not support for java 7
+
+What is the difference between @SpringBootApplication and @EnableAutoConfiguration annotation?
+The @SpringBootApplication is a combination of three annotations @Configuration (used for Java-based configuration),
+@ComponentScan (used for component scanning), and @EnableAutoConfiguration (used to enable auto-configuration in Spring Boot).
+Btw, this annotation is available from Spring 1.2 onwards which means if you are running on lower Spring Boot version then you will still need to use 
+the @Configuration, @CompnentScan, and @EnableAutoConfiguration if you need those features.
+ before 1.2 and after we can use the @SpringBootApplication
+@Configuration to enable Java-based configuration
+@ComponentScan to enable component scanning.
+@EnableAutoConfiguration to enable Spring Boot's auto-configuration feature.
+@ComponentScan
+This annotation enables component-scanning so that the web controller classes and other components you create will be automatically discovered and 
+registered as beans in Spring's Application Context. All the@Controller classes you write are discovered by this annotation.
+
+
+@Controller - specilization of @component use to configure the spring mvc controller classes and spring bean to IOC container.
+Indicates that an annotated class is a "Controller" (e.g. a web controller).
+it is in spring core jar /package
+It is typically used in combination with annotated handler methods based on the {@link org.springframework.web.bind.annotation.RequestMapping}
+ annotation.
+
+@RestController
+Spring RestController annotation is a convenience annotation that is itself annotated with @Controller and @ResponseBody. This annotation is applied to a 
+class to mark it as a request handler.
+
+Spring RestController annotation is used to create RESTful web services using Spring MVC. Spring RestController takes care 
+of mapping request data to the 
+defined request handler method. Once response body is generated from the handler method, it converts it to JSON or XML 
+response.
+
+Framework	Path segment	http query parameter
+Jersey (JAX-RS)	@PathParam	@QueryParam
+Spring RESTFul	@PathVariable	@RequestParam
+
+@PathParam reads the value from a path part of the called URI. @QueryParam is used to read the values ​​from QueryParameters of a URI call. 
+These are after? listed in a URI.
+
+SPRING BOOT
+===============
+
+The "spring-boot-starter-parent" is a special starter that provides useful Maven defaults i.e it adds all the required jars and other things automatically. 
+It also provides a dependency-management section so that you can omit version tags for dependencies you are using in pom.
+
+What is a Spring Boot Actuator?
+
+Spring Boot Actuator allows you to monitor and manage your application when you want to push it for the production. It helps you to control your 
+application by using HTTP endpoints.
+
+What is a shutdown in the actuator?
+
+A shutdown is an endpoint that helps application to be shut down properly. This feature is not enabled by default.
+
+However, you can use it by setting command: management.endpoint.shutdown.enabled=true in your
+
+What is Spring Boot? Why should you use it?
+Spring Boot is another Java framework from Sring umbrella which aims to simplify the use of Spring Framework for Java development. 
+It removes most of the pain associated with dealing with Spring e.g. a lot of configuration and dependencies and a lot of manual setups.
+
+Why should you use it? Well, Spring Boot not only provides a lot of convenience by auto-configuration a lot of things for you but also 
+improves the productivity because it lets you focus only on writing your business logic.
+
+For example, you don't need to setup a Tomcat server to run your web application. You can just write code and run it as Java application 
+because it comes with an embedded Tomcat server. You can also create a JAR file or WAR file for deployment based on your convenience.
+
+Features
+=======
+Starter dependency
+This feature aggregates common dependencies together. For example, if you want to develop Spring MVC based RESTful services then instead of including
+ Spring MVC JAR and Jackson JAR file into classpath you can just specify spring-boot-web-starter and it will automatically download both those JAR files. 
+ Spring Boot comes with many such starter dependencies to improve productivity.
+
+Spring Actuator
+This feature provides a lot of insights of a running Spring boot application. For example, you can use Actuator to find out which beans are created 
+in Spring's application context and which request path are mapped to controllers.
+
+It provides several endpoints e.g. a REST endpoint to retrieve this kind of information over the web. It also provides a lot of insight and 
+metrics about application health e.g. CPU and memory usage, number of threads etc.
+
+/showdown endpoint you can kill a Spring Boot application.
+
+What is the difference between an embedded container and a WAR?
+The main difference between an embedded container and a WAR file is that you can Spring Boot application as a JAR from the command prompt without 
+setting up a web server. But to run a WAR file, you need to first set up a web server like Tomcat which has Servlet container and then you need to 
+deploy WAR there.
+
+@RequestMapping
+This annotation is used to provide the routing information and tells to Spring that any HTTP request must be mapped to the respective method.
+
+What do you understand by auto-configuration in Spring Boot and how to disable the  auto-configuration?
+Auto-configuration is used to automatically configure the required configuration for the application. For example, if you have a data source bean present
+ in the classpath of the application, then it automatically configures the JDBC template. With the help of auto-configuration, you can create a
+  Java application in an easy way, as it automatically configures the required beans, controllers, etc. 
+
+To disable the auto-configuration property, you have to exclude attribute of @EnableAutoConfiguration, in the scenario where you do not want it to be 
+applied.
+
+1
+@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
+If the class is not on the classpath, then to exclude the auto-configuration, you have to mention the following code:
+
+1
+@EnableAutoConfiguration(excludeName={Sample.class})
+
+if you want to build a WAR file, then you will mention
+
+<packaging>war</packaging>
+
+The name of the default H2 database is testdb.  

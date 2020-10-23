@@ -28,5 +28,14 @@ public class Test {
 		Map<String,String> map=new HashMap<>();
 		map.put("1", "2");
 		map.get("1");
+		String str= new String("str");
+		System.out.println(str.hashCode());
+		String str2="str";
+		String concat = str.concat("");
+		System.out.println(str2.hashCode());
+		System.out.println(System.identityHashCode(str)+"  "+System.identityHashCode(str.intern()));
+		System.out.println(System.identityHashCode(str2)+"  "+System.identityHashCode(str2.intern())); 
+		System.out.println(System.identityHashCode(concat)+"  "+System.identityHashCode(concat.intern())); 
+		
 	}
 }

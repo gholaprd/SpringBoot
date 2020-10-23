@@ -1,7 +1,9 @@
 package com.coforge.jay;
 
+import java.util.Comparator;
 import java.util.NavigableSet;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class SortSetByAscDescOrder {
 	public static void main(String[] args) {
@@ -21,5 +23,19 @@ public class SortSetByAscDescOrder {
 		NavigableSet<Integer> descendingSet = set.descendingSet();
 		System.out.println(descendingSet);
 		System.out.println(set);
+		TreeSet<Integer> integers = new TreeSet<>(new MyComparator());
+		integers.add(10);
+		integers.add(2);
+		integers.add(21);
+		integers.add(0);
+		System.out.println(integers);
+		TreeSet<String> strings = new TreeSet<>(new MyStringComparator());
+		strings.add("RD");
+		strings.add("DR");
+		strings.add("VG");
+		strings.add("PG");
+		System.out.println(strings);
+		
+		
 	}
 }

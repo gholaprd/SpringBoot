@@ -1,0 +1,164 @@
+What is an entity?
+The entity is a group of states associated together in a single unit. An entity behaves as an object and becomes a major constituent of the 
+object-oriented paradigm
+
+
+What are the types of cascade supported by JPA?
+Following is the list of cascade type: -
+
+PERSIST: In this cascade operation, if the parent entity is persisted then all its related entity will also be persisted.
+MERGE: In this cascade operation, if the parent entity is merged, then all its related entity will also be merged.
+DETACH: In this cascade operation, if the parent entity is detached, then all its related entity will also be detached.
+REFRESH: In this cascade operation, if the parent entity is refreshed, then all its related entity will also be refreshed.
+REMOVE: In this cascade operation, if the parent entity is removed, then all its related entity will also be removed.
+ALL In this case, all the above cascade operations can be applied to the entities related to the parent entity.
+
+One-to-one mapping: The one-to-one mapping represents a single-valued association where an instance of one entity is associated with an instance of another
+ entity. In this type of association, one instance of source entity can be mapped with at most one instance of the target entity.
+One-To-Many mapping: The One-To-Many mapping comes into the category of collection-valued association where an entity is associated with a collection of 
+other entities. In this type of association, the instance of one entity can be mapped with any number of instances of another entity.
+Many-to-one mapping The Many-To-One mapping represents a single-valued association where a collection of entities can be associated with the similar 
+entity. In the relational database, more than one row of an entity can refer to the same row of another entity.
+Many-to-many mapping The Many-To-Many mapping represents a collection-valued association where any number of entities can be associated with a 
+collection of other entities. In the relational database, more than one row of one entity can refer to more than one row of another entity.
+
+What is the Java Persistence API?
+The Java Persistence API (JPA) is the specification of Java that is used to persist data between Java object and relational database. 
+JPA acts as a bridge between object-oriented domain models and relational database systems. As JPA is just a specification, it doesn't perform any
+ operation by itself. It requires an implementation. Therefore, ORM tools like Hibernate, TopLink, and iBatis implements JPA
+ 
+ What does the @Id annotation do?
+The @Id annotation marks a field as the primary key for that particular table. This is a unique identifier for each entry in the table. 
+This annotation is typically used with @GeneratedValue to automatically generate an unique id for each entry in the table.
+
+What does the @Entity annotation do?
+The @Entity annotation indicates a class represents a relational table in the database
+
+Here comes the role of Spring data JPA, which sits right between application’s domain layer and JPA implementation like Hibernate. 
+With it’s out-of-the-box features, many of the problems are solved and it gets easy to talk with any JPA implementation.
+
+What features does Spring data JPA provides?
+It provides built-in out of the box support for repositories, according to our Entity classes. This alone removes almost all the typical repository boilerplate code.
+Query creation from method declaration. We can name methods in a specific format and it provides us the query implementation to fetch the data.
+It has built-in pagination support.
+Support for dynamic query execution.
+Support for Type-Safe queries by QueryDSL.
+
+AUTO: Hibernate selects the generation strategy based on the used dialect,
+IDENTITY: Hibernate relies on an auto-incremented database column to generate the primary key,
+SEQUENCE: Hibernate requests the primary key value from a database sequence,
+TABLE: Hibernate uses a database table to simulate a sequence.
+
+What are the possible states of entity bean?
+Entity bean can have below possible state –
+
+Transient: When ever we create a new object of Entity bean then we can say that is in Transient state,At that time any modification in the object state 
+does not effect on database.
+Persistent: When ever the Object of entity bean associated with session we can say that is in persistent state, if any change in the object state , 
+then that modification effects in database.
+Detached :When ever the object is removed from session then it enters in to detached state.Any modification on detached state object , does not effect 
+in database.
+
+Can you make entity class as final?
+You can make an Hibernate Entity class final, but that’s not a good practice.
+Generally, persistence providers make proxies of objects using some library like CGLIB or javassist. 
+
+What is the difference between get() and load() and when to use what ?
+If no row with the given identifier value exists in the database, get() returns null. The load() method throws an ObjectNotFoundException.
+
+Here evict() is used to remove a particular object from cache associated with session, and clear() method is used to remove all cached objects 
+associated with session. 
+
+
+
+SPRING DATA JPA
+What is the Java Persistence API?
+PA acts as a bridge between object-oriented domain models and relational database systems. 
+As JPA is just a specification, it doesn't perform any operation by itself. It requires an implementation. 
+Therefore, ORM tools like Hibernate, TopLink, and iBatis implements JPA.
+
+What is Spring Data JPA?
+Spring Data JPA is one of Spring Data module which provides predefined repository methods to perform CRUD operation.
+ Using Spring Data JPA we define the repository interface and query methods(query creation from method names) to 
+ access the data from the database.
+ 
+ How to enable Spring Data JPA features.
+First, we need to define some configuration class let’s say JpaConfig.java and then we need to use
+ @EnableJpaRepositories annotation with that class. 
+ 
+ The CrudRepository’s save() method is used to perform save as well as update operation both. 
+ The implementation has been given in SimpleJpaRepository.java, where persist() and merge() is getting called.
+ 
+ The CrudRepository saveAll() method used to save multiple entities and internally annotated with @Transactional 
+ annotation. It internally uses save() method 
+ 
+ The findById() method will return null if the record doesn’t exist in the database.available in CrudRepository interface.
+ The getOne() method throw EntityNotFoundException if the record doesn’t exist in the database.JpaRepositpry interface.
+ 
+ The delete() method internally uses EntityManager’s remove() method as below.
+ The first one i.e delete() internally uses remove() method. Before call remove() method it calls contains()/merge() method.
+ deleteInBatch() prepares the query and collect some other information and directly calls the executeUpdate() method.
+ 
+ deleteAll() internally use delete() method only.
+ deleteAllInBatch(), EntityManger createQuery() method will preapare the query and it directly calls executeUpdate() method.
+ 
+ What will happen when we define wrong Query Methods in Spring Data JPA?
+ will give error at the server up time UnsatisfiedDependencyException
+ 
+ What is the Difference Between JPA and Hibernate?
+As we know that JPA is just a specification, meaning there is no implementation. You can annotate your classes as much as you would like with JPA 
+annotations, however, without an implementation, nothing will happen. Think of JPA as the guidelines that must be followed or an interface, 
+while Hibernate's JPA implementation is code that meets the API as defined by the JPA specification and provides the under the hood functionality.
+
+A JPA entity class is a POJO (Plain Old Java Object) class, i.e. an ordinary Java class that is marked (annotated) as having the ability to 
+represent objects in the database. Conceptually this is similar to serializable classes, which are marked as having the ability to be serialized
+
+What are the JPA Cascade Types?
+JPA allows you to propagate the state transition from a parent entity to a child. For this purpose, the JPA javax.persistence.
+CascadeType defines various cascade types:
+ALL - cascades all entity state transitions
+PERSIST - cascades the entity persist operation.
+MERGE - cascades the entity merge operation.
+REMOVE - cascades the entity remove operation.
+REFRESH - cascades the entity refresh operation.
+
+ What is Entity?
+Entity is a lightweight persistent domain object. The main program entity is the entity class, which can also use additional classes that can 
+be used as auxiliary classes or to maintain state of the entity.
+
+6. Can the Entity class inherit from non-Entity classes?
+Can.
+
+7. Can an Entity class inherit from other Entity classes?
+The same can.
+
+
+8. Can a non-Entity class inherit from an Entity class?
+And this is also permissible.
+
+9. Can Entity be an abstract class?
+Perhaps, at the same time, it retains all the properties of the Entity, except that it cannot be directly initialized.
+DETACH - cascades the entity detach operation.
+ 
+ 
+  What JPA requirements for Entity classes can you list (at least six requirements)?
+1) Entity class must be annotated with Entity or described in the XML configuration file JPA,
+
+2) Entity class must contain a public or protected constructor with no arguments (it can also have constructors with arguments),
+
+3) Entity class must be a top-level class (top -level class),
+
+4) Entity class cannot be enum or interface,
+
+5) Entity class cannot be final class,
+
+6) Entity class cannot contain final fields or methods if they participate in mapping (persistent final methods or persistent final instance variables),
+
+7) If an Entity class object is passed by value as a separate object (detached object), for example through a remote interface 
+(through a remote interface), it must also implement a Serializable interface,
+
+8) The Entity class fields should be directly accessible only to the methods of the Entity class and should not be directly accessible to other 
+classes using this entity. Such classes should refer only to methods (getter / setter methods or other business logic methods in the Entity class),
+
+9) The Enity class must contain a primary key, that is, an attribute or group of attributes that uniquely defines the record of this Enity class in
+ the database.
