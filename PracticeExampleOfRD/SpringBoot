@@ -11,6 +11,7 @@ the @Configuration, @CompnentScan, and @EnableAutoConfiguration if you need thos
 @Configuration to enable Java-based configuration
 @ComponentScan to enable component scanning.
 @EnableAutoConfiguration to enable Spring Boot's auto-configuration feature.
+It is a combination of @Configuration and @ComponentScan annotations
 @ComponentScan
 This annotation enables component-scanning so that the web controller classes and other components you create will be automatically discovered and 
 registered as beans in Spring's Application Context. All the@Controller classes you write are discovered by this annotation.
@@ -93,6 +94,10 @@ What do you understand by auto-configuration in Spring Boot and how to disable t
 Auto-configuration is used to automatically configure the required configuration for the application. For example, if you have a data source bean present
  in the classpath of the application, then it automatically configures the JDBC template. With the help of auto-configuration, you can create a
   Java application in an easy way, as it automatically configures the required beans, controllers, etc. 
+  
+  How can we create a custom endpoint in Spring Boot Actuator?
+To create a custom endpoint in Spring Boot 2.x, you can use the @Endpoint annotation. Spring Boot also exposes endpoints using @WebEndpointor,
+ @WebEndpointExtension over HTTP with the help of Spring MVC, Jersey, etc.
 
 To disable the auto-configuration property, you have to exclude attribute of @EnableAutoConfiguration, in the scenario where you do not want it to be 
 applied.

@@ -1,12 +1,12 @@
 Dependancy lookup
 
-when obj gets the req dependancies on its own called DL. If we go the containes and ask for an obj then it is DL.
+when obj gets the req dependancies on its own called DL. If we go the container and ask for an obj then it is DL.
 Majority we are avoiding it.
 
 DI
-if some external component gives the required dependancies called DI
+if some external component gives the required dependencies called DI
 
-# Ref store in conatined and obj store in JVM.
+# Ref store in contined and obj store in JVM.
 
 DI is type of IOC
 
@@ -20,11 +20,11 @@ objects dependencies are injected by other assembler objects.
 
 IOC is not DI.
 
-@Componet scan scan the current package not all present in classpath.
+@Componetscan scan the current package not all present in classpath.
 
 @Component - conveying to the spring to create an obj of class.
 
-Constructor injection depencies are mandatory & final but in SC optional
+Constructor injection depencies are mandatory & final but in SI optional
 Taking filed as final of obj then we can say class is immutable. we can change the state of obj creation in CI but SI we can do it.
 
 Autowired field level problem we can't solve and can't mock the obj.

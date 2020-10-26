@@ -12,9 +12,11 @@ Storage - These include S3, Glacier, Elastic Block Storage, Elastic File System.
 Networking - These include VPC, Amazon CloudFront, Route53
 
 What is auto-scaling?
-Auto-scaling is a function that allows you to provision and launch new instances whenever there is a demand. It allows you to automatically increase or decrease resource capacity in relation to the demand.
+Auto-scaling is a function that allows you to provision and launch new instances whenever there is a demand. It allows you to automatically increase 
+or decrease resource capacity in relation to the demand.
 
-AWS stands for Amazon Web Service; it is a collection of remote computing services also known as a cloud computing platform.  This new realm of cloud computing is also known as IaaS or Infrastructure as a Service.
+AWS stands for Amazon Web Service; it is a collection of remote computing services also known as a cloud computing platform.  
+This new realm of cloud computing is also known as IaaS or Infrastructure as a Service.
 
 Mention what the key components of AWS are?
 The key components of AWS are
@@ -27,11 +29,16 @@ Elastic Block Store (EBS):It offers persistent storage volumes that attach to EC
 CloudWatch: To monitor AWS resources, It allows administrators to view and collect key Also, one can set a notification alarm in case of trouble.
 
 Explain what S3 is?
-S3 stands for Simple Storage Service. You can use S3 interface to store and retrieve any amount of data, at any time and from anywhere on the web.  For S3, the payment model is “pay as you go.”
+S3 stands for Simple Storage Service. You can use S3 interface to store and retrieve any amount of data, at any time and from anywhere on the web. 
+ For S3, the payment model is “pay as you go.”
 4) What is AMI?
-AMI stands for Amazon Machine Image.  It’s a template that provides the information (an operating system, an application server, and applications) required to launch an instance, which is a copy of the AMI running as a virtual server in the cloud.  You can launch instances from as many different AMIs as you need.
+AMI stands for Amazon Machine Image.  It’s a template that provides the information (an operating system, an application server, and applications) 
+required to launch an instance, which is a copy of the AMI running as a virtual server in the cloud.  You can launch instances from as many different 
+AMIs as you need.
 5) Mention what the relationship between an instance and AMI is?
-From a single AMI, you can launch multiple types of instances.  An instance type defines the hardware of the host computer used for your instance. Each instance type provides different computer and memory capabilities.  Once you launch an instance, it looks like a traditional host, and we can interact with it as we would with any computer.
+From a single AMI, you can launch multiple types of instances.  An instance type defines the hardware of the host computer used for your instance. 
+Each instance type provides different computer and memory capabilities.  Once you launch an instance, it looks like a traditional host, and we can 
+interact with it as we would with any computer.
 
 What does an AMI include?
 An AMI includes the following things
@@ -66,7 +73,8 @@ Memory Optimized
 Storage Optimized
 Accelerated Computing
 
-VPC stands for Virtual Private Cloud. It allows you to customize your networking configuration. It is a network which is logically isolated from another network in the cloud. It allows you to have your IP address range,  internet gateways, subnet and security groups.
+VPC stands for Virtual Private Cloud. It allows you to customize your networking configuration. It is a network which is logically isolated from 
+another network in the cloud. It allows you to have your IP address range,  internet gateways, subnet and security groups.
 
 What is AWS Lambda?
 Lambda is an Amazon compute service which allows you to run code in the  AWS Cloud without managing servers.
@@ -81,7 +89,8 @@ Data as a Service (DaaS)
 Platform as a Service (PaaS)
 Infrastructure as a Service (IaaS).
 45) State the difference between An Instance  and AMI
-AMI is a template consisting software configuration part. For example Operating systems, applications, application server if you start an instance, a duplicate of the AMI in a row as an attendant in the cloud.
+AMI is a template consisting software configuration part. For example Operating systems, applications, application server if you start an instance,
+ a duplicate of the AMI in a row as an attendant in the cloud.
 
 What are the different types of Load Balancer in AWS services?
 Two types of Load balancer are:

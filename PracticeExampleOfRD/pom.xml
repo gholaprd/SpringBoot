@@ -14,6 +14,7 @@
 	<name>PracticeExampleOfRD</name>
 	<description>Spring security with Data validation</description>
 
+<packaging>jar</packaging>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>

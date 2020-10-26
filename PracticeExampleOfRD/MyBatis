@@ -1,8 +1,10 @@
 What is mybatis?
 
-(1) mybatis is an excellent java-based persistence layer framework, which encapsulates jdbc internally, so that developers only need to pay attention to the sql statement itself, without the effort to deal with the complicated process of loading drivers, creating connections, creating statements, etc. .
+(1) mybatis is an excellent java-based persistence layer framework, which encapsulates jdbc internally,
+  so that developers only need to pay attention to the sql statement itself, without the effort to deal with the complicated 
+  process of loading drivers, creating connections, creating statements, etc. .
 
-(2) mybatis configures various statements to be executed by xml or annotation, and maps the dynamic parameters of sql in the java object and statement to generate the final executed SQL statement. Finally, the mybatis framework executes sql and maps the result to Java object and return.
+(2)mybatis configures various statements to be executed by xml or annotation, and maps the dynamic parameters of sql in the java object and statement to generate the final executed SQL statement. Finally, the mybatis framework executes sql and maps the result to Java object and return.
 
 3)MyBatis supports custom SQL, stored procedures, and advanced mapping. MyBatis avoids almost all JDBC code and manually sets parameters and gets result sets. MyBatis can use simple XML or annotations to configure and map native information, mapping interfaces and Java POJOs to records in the database.
 
@@ -16,9 +18,12 @@ And get the result set. Mybatis can use simple XML or annotations to configure a
 
 POJO (plain old Java objects) of Java is a record in the database.
 
-MyBatis is an open source, lightweight, persistence framework. It is an alternative to JDBC and Hibernate. It automates the mapping between SQL databases and objects in Java, .NET, and Ruby on Rails. The mappings are decoupled from the application logic by packaging the SQL statements in XML configuration files.
+MyBatis is an open source, lightweight, persistence framework. It is an alternative to JDBC and Hibernate. It automates the mapping between SQL databases 
+and objects in Java, .NET, and Ruby on Rails. The mappings are decoupled from the application logic by packaging the SQL statements in XML configuration 
+files.
 
-It abstracts almost all of the JDBC code, and reduces the burden of setting of parameters manually and retrieving the results. It provides a simple API to interact with the database. It also provides support for custom SQL, stored procedures and advanced mappings.
+It abstracts almost all of the JDBC code, and reduces the burden of setting of parameters manually and retrieving the results. It provides a simple API to 
+interact with the database. It also provides support for custom SQL, stored procedures and advanced mappings.
 
 It was formerly known as IBATIS, which was started by Clinton Begin in 2002. MyBatis 3 is the latest version. It is a total makeover of IBATIS.
 
@@ -59,11 +64,16 @@ increased productivity
 separation of SQL code from Java classes
 
 SQLSessionFactory
-SQLSessionFactory is the core class for every MyBatis application. This class is instantiated by using SQLSessionFactoryBuilder's builder() method which loads a configuration XML file:
+SQLSessionFactory is the core class for every MyBatis application. This class is instantiated by using SQLSessionFactoryBuilder's builder()
+ method which loads a configuration XML file:
 
-The SqlSessionFactory bean will provide SessionFactory instances of MyBatis. To configure SqlSessionFactory, we need to define two properties. First the data source which will be used by MyBatis to create connection database and MyBatis configuration file name to configure the environment of MyBatis.
+The SqlSessionFactory bean will provide SessionFactory instances of MyBatis. To configure SqlSessionFactory, we need to define two properties. 
+First the data source which will be used by MyBatis to create connection database and MyBatis configuration file name to configure the environment 
+of MyBatis.
 
-MapperScannerConfigurer is used to publish the data service interfaces in defined for MyBatis to configure as Spring Beans. We just have to provide package in which the interfaces and their mapping XML files has been defined. We can specify more than one packages using common separation or semicolon. After that we will be able to get the instances of UserService using @Autowired annotation. We do not have to implement the interface as MyBatis will provide proxy implementation for this.
+MapperScannerConfigurer is used to publish the data service interfaces in defined for MyBatis to configure as Spring Beans. 
+We just have to provide package in which the interfaces and their mapping XML files has been defined. We can specify more than one packages using common 
+separation or semicolon. After that we will be able to get the instances of UserService using @Autowired annotation. We do not have to implement the interface as MyBatis will provide proxy implementation for this.
 
 
 
